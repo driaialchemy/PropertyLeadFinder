@@ -19,6 +19,7 @@ No paid vendor (Follow Up Boss, ATTOM, HouseCanary, etc.) is called.
 import numpy as np
 import pandas as pd
 from faker import Faker
+from pathlib import Path
 from datetime import date, timedelta
 import random
 
@@ -208,7 +209,9 @@ merged["propensity_score_0_100"] = (
     + (merged["engagement_score_0_100"] / 100 * 15)
 ).round(1)
 
-with pd.ExcelWriter("/home/claude/synthetic_hidden_equity_data_az.xlsx", engine="openpyxl") as writer:
+sample_xlsx = Path(__file__).resolve().parent / "sample_data" / "synthetic_hidden_equity_data_az.xlsx"
+sample_xlsx.parent.mkdir(parents=True, exist_ok=True)
+with pd.ExcelWriter(sample_xlsx, engine="openpyxl") as writer:
     df_crm.to_excel(writer, sheet_name="CRM Export", index=False)
     df_property.to_excel(writer, sheet_name="MLS_Public Record", index=False)
     df_avm.to_excel(writer, sheet_name="AVM Feed", index=False)
