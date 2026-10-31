@@ -2,12 +2,16 @@ node_modules/
 .wrangler/
 .env
 .env.*
+!.env.example
 *.log
 .DS_Store
 Thumbs.db
+*.xlsx
+*.xls
+*.csv
+*.docx
 
 # governance baseline ignores
-!.env.example
 .venv/
 venv/
 __pycache__/
